@@ -10,8 +10,13 @@ import comments from '../comments'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
+const reducerMock = combineReducers({
+  app,
+  post,
+  comments,
+  router: (state = {}) => state,
+})
 const axiosMock = new AxiosMockAdapter(axios)
-const reducerMock = combineReducers({ app, post, comments, router: (state = {}) => state })
 
 describe('sideeffects', () => {
   afterEach(() => {
