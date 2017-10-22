@@ -22,7 +22,7 @@ describe('sideeffects', () => {
   afterEach(() => {
     axiosMock.reset()
   })
-  it('load()', done => {
+  it('load()', () => {
     const postResponse = {
       userId: 1,
       id: 1,
@@ -48,7 +48,7 @@ describe('sideeffects', () => {
       },
     }
     const store = mockStore(() => state)
-    store.dispatch(load()).then(() => {
+    return store.dispatch(load()).then(() => {
       const actions = store.getActions()
       const expectedActions = [
         {
@@ -57,6 +57,8 @@ describe('sideeffects', () => {
         },
         { type: 'COMMENTS__SET', payload: commentsResponse },
       ]
+      expect(actions).toEqual(expectedActions)
+      //
       actions.forEach(action => {
         state = reducerMock(state, action)
       })
@@ -65,7 +67,6 @@ describe('sideeffects', () => {
         post: { ...state.post, ...postResponse },
         comments: [...commentsResponse],
       })
-      done()
     })
   })
 })

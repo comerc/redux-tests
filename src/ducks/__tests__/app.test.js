@@ -14,6 +14,7 @@ describe('sync ducks', () => {
     const actions = store.getActions()
     const expectedActions = [{ type: 'APP__SET', payload: true }]
     expect(actions).toEqual(expectedActions)
+    //
     actions.forEach(action => {
       state = reducer(state, action)
     })
