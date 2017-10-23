@@ -11,7 +11,7 @@ export const initialState = {}
 const reducer = createReducer({}, initialState)
 
 const set = createAction(`${NS}SET`)
-reducer.on(set, (state, post) => ({ ...post }))
+reducer.on(set, (state, post) => ({ ...state, ...post }))
 
 export const load = () => (dispatch, getState) => {
   const state = getState()

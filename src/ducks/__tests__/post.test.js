@@ -2,16 +2,13 @@ import thunk from 'redux-thunk'
 import configureMockStore from 'redux-mock-store'
 import axios from 'axios'
 import AxiosMockAdapter from 'axios-mock-adapter'
-import { load } from '../post'
 import { combineReducers } from 'redux'
-import app from '../app'
-import post from '../post'
+import post, { load } from '../post'
 import comments from '../comments'
 
 const middlewares = [thunk]
 const mockStore = configureMockStore(middlewares)
 const reducerMock = combineReducers({
-  app,
   post,
   comments,
   router: (state = {}) => state,
